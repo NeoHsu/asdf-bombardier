@@ -6,6 +6,10 @@
 
 </div>
 
+# Build History
+
+[![Build history](https://buildstats.info/github/chart/NeoHsu/asdf-bombardier?branch=master)](https://github.com/NeoHsu/asdf-bombardier/actions)
+
 # Contents
 
 - [Dependencies](#dependencies)
