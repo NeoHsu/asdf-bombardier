@@ -2,25 +2,18 @@
 
 set -euo pipefail
 
-# shellcheck source=../lib/utils.bash
+# shellcheck source=lib/utils.bash
 source "$(dirname "$0")/../lib/utils.bash"
 
 platform=$(get_platform)
 ext=""
 case $platform in
-    darwin) arch="amd64" ;;
-    windows) ext=".exe" ;;
+  windows) ext=".exe" ;;
 esac
 
 mkdir -p "$ASDF_DOWNLOAD_PATH"
 
 release_file="$ASDF_DOWNLOAD_PATH/$TOOL_NAME$ext"
 
-# Download tar.gz file to the download directory
+# Download binary file to the download directory
 download_release "$ASDF_INSTALL_VERSION" "$release_file"
-
-#  Extract contents of tar.gz file into the download directory
-cp "$release_file" "$ASDF_DOWNLOAD_PATH" || fail "Could not extract $release_file"
-
-# Remove the tar.gz file since we don't need to keep it
-rm "$release_file"

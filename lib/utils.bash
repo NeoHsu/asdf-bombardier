@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for bombardier.
 GH_REPO="https://github.com/codesenberg/bombardier"
 TOOL_NAME="bombardier"
 TOOL_TEST="bombardier --version"
@@ -49,7 +48,6 @@ download_release() {
   esac
 
   url="$GH_REPO/releases/download/v$version/bombardier-$platform-$arch$ext"
-
   echo "* Downloading $TOOL_NAME release $version..."
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
 }
@@ -71,7 +69,7 @@ install_version() {
     esac
 
     mkdir -p "$install_path/bin"
-    cp -r "$ASDF_DOWNLOAD_PATH/$TOOL_NAME$ext" "$install_path/bin/$TOOL_NAME$ext"
+    mv "$ASDF_DOWNLOAD_PATH/$TOOL_NAME$ext" "$install_path/bin/$TOOL_NAME$ext"
     chmod +x "$install_path/bin/$TOOL_NAME$ext"
 
     local tool_cmd
